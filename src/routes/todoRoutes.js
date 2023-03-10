@@ -27,7 +27,7 @@ router.put("/api/v1/todos/:id", async (req, res) => {
     await Todo.update(data, {
       where: { id },
     });
-    res.status(400).send();
+    res.status(204).send();
   } catch (error) {
     res.status(400).json(error);
   }

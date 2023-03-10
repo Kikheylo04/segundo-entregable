@@ -1,5 +1,9 @@
 const { DataTypes } = require("sequelize");
 const db = require("../utils/database");
+const Status = {
+  COMPLETED: "Completada",
+  PENDING: "Pendiente",
+};
 
 const Todo = db.define("todos", {
   id: {
@@ -8,15 +12,16 @@ const Todo = db.define("todos", {
     autoIncrement: true,
   },
   title: {
-    type: DataTypes.STRING(30),
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   description: {
-    type: DataTypes.STRING(200),
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   status: {
-    type: DataTypes.BOOLEAN(10),
+    type: DataTypes.ENUM(Object.values(Status)),
+    defaultValue: Status.PENDING,
     allowNull: false,
   },
 });
